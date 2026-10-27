@@ -1,0 +1,7 @@
+---
+icon: gear
+---
+
+# Settings
+
+## Appearance
