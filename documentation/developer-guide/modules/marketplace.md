@@ -68,7 +68,7 @@ The zip must contain the module folder's **contents** at its root. Don't put the
 
 ## Versioning and compatibility
 
-The current module API version is **0.2.0** (`^0.2`).
+The current module API version is **0.2.1** (`^0.2`).
 
 Saturn installs the newest version whose `saturnApi` matches the running Saturn. If a newer version needs a newer Saturn, the Update button is disabled with "You need to update Saturn to install version X".
 

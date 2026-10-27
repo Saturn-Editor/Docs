@@ -24,12 +24,12 @@ A language module adds support for a programming language to Saturn. It can add 
 
 | Key | Description |
 | --- | --- |
-| languages | `[{ id, name, extensions, grammar, scopeName }]`. `grammar` is a TextMate grammar file. |
+| languages | `[{ id, name, extensions, grammar?, scopeName? }]`. `grammar` is a TextMate grammar file. |
 | languageServer | `{ languages, command, args, features }`. See [Language server](#language-server). |
-| debugger | `{ label, languages, command, args, launch }`. A Debug Adapter Protocol (DAP) adapter that runs over stdio. You can use `${file}`, `${project}` and `${setting:<id>}` in `launch`. |
-| previews | `[{ id, label, extensions, defaultView? }]`. A rendered view of files with these extensions. `defaultView` is `code`, `split` or `preview`. |
-| fileTemplates | Templates for new files. |
-| newProject | `{ language, fields }`. Lets users create a new project for this language. |
+| debugger | `{ label, languages, command, args?, launch, configurations?, attach? }`. A Debug Adapter Protocol (DAP) adapter. See [Debuggers](debuggers.md). |
+| previews | `[{ id, label, extensions, defaultView? }]`. A rendered view of files with these extensions. `defaultView` is `code` (the default), `split` or `preview`. Users can change it in Settings → Languages. Render it with `previews.registerRenderer(id, (text, ctx) => …)`. |
+| fileTemplates | `[{ id, label, kind, extension?, placeholder? }]`, where `kind` is `file` or `dir`. Fill each one with `files.registerTemplate(id, { fileName?, content? })`. |
+| newProject | `{ language, tabs?, fields }`. Lets users create a new project for this language. See [New projects](#new-projects). |
 | commands, buttons, panels, settings, runConfigurations | The same as for extensions. See [Configuration](extensions/configuration.md). |
 
 ## Language server
@@ -39,7 +39,43 @@ Saturn talks to the language server using the Language Server Protocol (LSP) ove
 * If `command` is `"node"`, Saturn uses its bundled copy of Node.
 * `${setting:<id>}` in `command` or `args` is replaced with the value of that setting.
 * The process runs in the project folder. The `SATURN_MODULE_STORAGE` environment variable points to a folder where the module can store files, for example a downloaded server.
-* `features` lists the LSP features to turn on: `completion`, `diagnostics`, `hover`, `definition`, `symbols`, `references`, `rename`, `formatting` and `signatureHelp`. If you leave out `features`, all of them are turned on. Users can switch each one on or off in Settings.
+* `features` lists the LSP features to turn on. If you leave out `features`, all of them are turned on. Users can switch each one on or off in Settings → Languages; features you don't list show as "Not supported".
+
+| Feature | Powers |
+| --- | --- |
+| `completion` | Code completion |
+| `diagnostics` | Error detection |
+| `hover` | Hover information |
+| `definition` | Go to definition |
+| `symbols` | The Outline panel |
+| `references` | Find Usages |
+| `rename` | Rename Symbol |
+| `formatting` | Format Document and format on save |
+| `signatureHelp` | Parameter hints |
+
+{% hint style="warning" %}
+`symbols`, `references`, `rename`, `formatting` and `signatureHelp` are new in API 0.2.1. If your manifest lists `features`, add them to turn them on.
+{% endhint %}
+
+## New projects
+
+`contributes.newProject` adds your language to Saturn's New Project window.
+
+* `fields` are settings-style fields (`text`, `select`, `checkbox`, `folder` or `file`) that the user fills in.
+* `tabs` is optional: `[{ id, label, templates: [{ id, label, description? }] }]`. Each tab shows a Template dropdown, with the chosen template's description underneath.
+* A field can have `when: { template?: [...], tab?: [...] }`. It only shows, and is only sent, when the chosen tab or template matches.
+* `fields.tab` and `fields.template` tell your handler which tab and template were chosen.
+
+When the user clicks Create, Saturn calls your `projects.onCreate` handler:
+
+```js
+saturn.projects.onCreate(async ({ projectPath, fields, progress }) => {
+  progress('Creating project…');
+  // write files into projectPath
+});
+```
+
+Saturn waits for the handler with no time limit, showing "Creating…" or your latest progress message. If the handler throws, Saturn deletes the new folder and shows the error on the New Project page.
 
 ## Example
 

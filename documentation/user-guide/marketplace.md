@@ -12,13 +12,19 @@ Open Saturn and click "Marketplace" from the main menu. If you already have a pr
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-In the marketplace, you can see available Languages, Extensions, and Themes, as well as ones you already have download. To install a module, simply click "Install". Saturn will automatically check if the module is compatable with your Saturn version and prompt you to upgrade if needed.
+The marketplace has a section each for Languages, Extensions and Themes. In each section, the **Available** tab lists modules you can install and the **Installed** tab lists the ones you have. To install a module, simply click "Install". Saturn will automatically check if the module is compatable with your Saturn version and prompt you to upgrade if needed.
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 To update your Saturn modules, simply click the "Update to X.X.X" button to the right of the module list.
 
 <figure><img src="../.gitbook/assets/image (2).png" alt="" width="261"><figcaption></figcaption></figure>
+
+## Installing from a file
+
+To install a module that isn't in the marketplace, open the **Upload** menu and choose **Zip file…** or **Folder…**. In a zip, the manifest can be at the root or inside a single top-level folder.
+
+Only install modules from people you trust.
 
 ## Languages
 

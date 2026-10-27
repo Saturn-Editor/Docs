@@ -7,6 +7,9 @@ icon: book-bookmark
 * [Languages](languages.md): the languages Saturn supports.
 * [Marketplace](marketplace.md): install and update languages, extensions and themes.
 * [Settings](settings.md): change how Saturn looks and behaves.
+* [Editor](editor.md): split the editor, navigate code and manage files.
+* [Debugging](debugging.md): breakpoints, watches and attaching to a process.
+* [Git](git.md): commit, branch, stash, merge and resolve conflicts.
 
 ## Editor features
 
