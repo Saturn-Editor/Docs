@@ -4,7 +4,21 @@ The saturn-extension.json file defines how the Extension behaves.
 
 ## Basic Configuration
 
-<table><thead><tr><th width="176.22265625">Key</th><th width="171.0078125">Accepted Values</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>Any string</td><td>The ID of your module, modules in the Saturn Marketplace must have unique IDs. </td></tr><tr><td>name</td><td>Any string</td><td>The name of your module that is shown in Saturn's interface.</td></tr><tr><td>version</td><td>Any version string</td><td>The version of your module.</td></tr><tr><td>description</td><td>Any string</td><td>A short description of what your module does.</td></tr><tr><td>saturnApi</td><td>Any version string</td><td>The Saturn-API version your module supports. For example, 0.2.0, or ^0.2, which also supports any 0.2.x versions. This is different to the Saturn-Core version.</td></tr><tr><td>main</td><td>Any valid file</td><td>The main file that should be loaded when your module is called by Saturn-Core</td></tr></tbody></table>
+<table><thead><tr><th width="176.22265625">Key</th><th width="171.0078125">Accepted Values</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>Any string</td><td>The ID of your module, modules in the Saturn Marketplace must have unique IDs. </td></tr><tr><td>name</td><td>Any string</td><td>The name of your module that is shown in Saturn's interface.</td></tr><tr><td>version</td><td>Any version string</td><td>The version of your module.</td></tr><tr><td>description</td><td>Any string</td><td>A short description of what your module does.</td></tr><tr><td>saturnApi</td><td>Any version string</td><td>The Saturn-API version your module supports. For example, 0.2.0, or ^0.2, which also supports any 0.2.x versions. This is different to the Saturn-Core version.</td></tr><tr><td>main</td><td>Any valid file</td><td>The main file that should be loaded when your module is called by Saturn-Core</td></tr><tr><td>badge</td><td>Any short string</td><td>Optional. A short badge for your extension, for example "CC".</td></tr><tr><td>requires</td><td>Array</td><td>Optional. External tools your extension needs: <code>{ name, command, args?, install? }</code>. <code>install</code> is the hint shown when the tool is missing.</td></tr></tbody></table>
+
+The <code>id</code> and <code>version</code> must match your Marketplace entry. The <code>id</code> must be unique across all languages, extensions and themes.
+
+## Contributions
+
+| Key | Description |
+| --- | --- |
+| contributes.commands | `[{ id, title }]`. These appear in action search. Implement each one with `commands.register`. |
+| contributes.buttons | `[{ command, title, icon? }]`. Buttons on the editor's right edge, below Settings. Clicking one runs its command. `icon` must be a `.svg` or `.png` file in your zip. |
+| contributes.panels | `[{ id, title, dock }]`. Tree panels, where `dock` is `"left"` or `"bottom"`. Implement each one with `panels.registerTree`. |
+| contributes.settings | `[{ id, label, type, default?, options?, description? }]`, where `type` is `text`, `select`, `checkbox`, `folder` or `file`. For `select`, `options` is `[{ value, label }]`. Settings appear on your extension's Settings tab. |
+| contributes.runConfigurations | Set to `true` if your extension calls `run.registerProvider`. |
+
+Extensions can't contribute `languages`, `languageServer`, `previews`, `fileTemplates` or `newProject`.
 
 ## Example
 
@@ -14,7 +28,7 @@ An example from our Claude Code extension is shown below:
 {
   "id": "claudecode",
   "name": "Claude Code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Claude Code integration for Saturn",
   "badge": "CC",
   "saturnApi": "^0.2",
@@ -38,8 +52,8 @@ An example from our Claude Code extension is shown below:
       { "id": "claudecode.checkInstall", "title": "Claude Code: Check Installation" },
       { "id": "claudecode.refresh", "title": "Claude Code: Refresh Panel" }
     ],
-    "buttons": [{ "command": "claudecode.open", "title": "Claude Code", "badge": "CC", "icon": "build.svg" }],
-    "panels": [{ "id": "claudecode.panel", "title": "Claude Code", "dock": "left", "badge": "CC" }],
+    "buttons": [{ "command": "claudecode.open", "title": "Claude Code", "icon": "run-claude.svg" }],
+    "panels": [{ "id": "claudecode.panel", "title": "Claude Code", "dock": "left" }],
     "settings": [
       {
         "id": "claudePath",
