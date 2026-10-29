@@ -40,7 +40,7 @@ Each list file sits next to `index.json` and is a JSON array of entries. Saturn 
 | repo | Yes | The GitHub repository, as `owner/name`. |
 | versions | Yes | 1 to 10 versions, newest first. See below. |
 | image | No | An `https` URL for the image shown in the marketplace. |
-| default | No | Languages only. When `true`, the language is pre-ticked in the "Welcome to Saturn" popup on first launch. |
+| default | No | Languages and extensions. When `true`, the module is pre-ticked on the welcome screen at first launch. Users can untick it. |
 
 Each item in `versions`:
 
@@ -72,7 +72,7 @@ The current module API version is **0.3.0** (`^0.3`). A module runs when its maj
 
 Saturn installs the newest version whose `saturnApi` matches the running Saturn. If a newer version needs a newer Saturn, the Update button is disabled with "You need to update Saturn to install version X".
 
-When you release an update, **add** a new version to the top of `versions`; don't replace the old one. That way, older Saturn installs can still get a compatible release. Keep at most 10 versions and drop the oldest.
+When you release an update, **add** a new version to the top of `versions`; don't replace the old one. That way, older Saturn installs can still get a compatible release, and users can go back to an older version from Marketplace → Installed → Versions. Keep at most 10 versions and drop the oldest.
 
 ## Publishing
 

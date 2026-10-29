@@ -82,6 +82,7 @@ Read what the user is editing. See [Editor API](editor-api.md).
 * `workspace.findFiles(projectPath, glob)` finds files in the project that match a glob.
 * `workspace.openFile(projectPath, path, line?, column?)`
 * `workspace.onDidChangeFiles(e => …)`
+* `workspace.renameFile(projectPath, path, newName)` renames a file and returns its new absolute path. If the file is open, its tab moves too. New in this release.
 
 ### projects
 
@@ -101,6 +102,24 @@ Read what the user is editing. See [Editor API](editor-api.md).
 
 * `window.showMessage(message, { kind?: 'info' | 'warning' | 'error', projectPath? })` shows a message in the status bar.
 * `window.notify({ title, message?, kind?, actions? })` shows a notification in a pop-up and in the bell menu. Each action can run a command, open Settings, or open an `https` URL.
+* `window.showInput(projectPath, { title, value?, placeholder? })` asks the user to type something. It returns the text, or `null` if the user cancels. New in this release.
+
+### languages
+
+**Languages only.**
+
+* `languages.registerVersions(languageId, { list(ctx), addLabel?, add?(ctx), onChange?(ctx) })` fills the status-bar version picker, for example "Java 17". The language needs `versions: true`. Each method can be async.
+  * `list` returns the versions: `[{ id, label, detail? }]`.
+  * `add` is offered with a folder picker labelled `addLabel`. `ctx` also has `folder`. It returns the new version.
+  * `onChange` runs when the user picks a version. `ctx` also has `version`.
+* `languages.getVersion(projectPath, languageId)` returns the chosen version `{ id, label, detail? }`, or `null`.
+* `languages.registerDocComment(languageId, provide)` adds doc comments for a language with `docCommentTriggers`. New in this release. `provide` gets `{ projectPath, path, text, line, trigger, indent }`, where `line` is the 0-based line the trigger was typed on. Return a snippet string to replace the trigger, or `null` to do nothing. Use `${1}` or `$1` for placeholders. Don't indent the lines; the editor does that.
+* `languages.onDidRenameSymbol(e => …)` runs after a symbol is renamed. `e` is `{ projectPath, path, languageId, oldName, newName, changedFiles }`. New in this release.
+
+```js
+saturn.languages.registerDocComment('csharp', ({ trigger }) =>
+  trigger === '///' ? '/// <summary>\n/// ${1}\n/// </summary>' : null);
+```
 
 ### tests
 

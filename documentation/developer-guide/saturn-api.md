@@ -20,6 +20,17 @@ Versions are `X.Y.Z`. Saturn runs a module when:
 
 So a `^0.2` module runs on Saturn-API 0.3.0, but a `^0.3` module doesn't run on 0.2.x. This is looser than npm's caret rule for `0.x` versions.
 
+## What's new in this release
+
+Nothing is deprecated or removed. The API version number for this release isn't set yet.
+
+* **New API:** `window.showInput`, `workspace.renameFile`, `languages.onDidRenameSymbol` and `languages.registerDocComment`. See [Extensions](modules/extensions/README.md).
+* **Language servers:** three more `features`: `inlayHints`, `codeLens` and `semanticTokens`. Quick fixes (code actions) are requested automatically. See [Languages](modules/languages.md#language-server).
+* **Doc comments:** `docCommentTriggers` on a language. See [Languages](modules/languages.md#languages).
+* **Panels:** `showWhen` hides a panel until the project has a matching file. See [showWhen](modules/extensions/configuration.md#showwhen).
+* **File templates** show in New menus before the module loads.
+* **Marketplace:** `default` now works for extensions as well as languages. Users can install older versions.
+
 ## What's new in 0.3.0
 
 Modules that declare `^0.2` still run. Nothing is deprecated or removed.
@@ -71,10 +82,12 @@ The `saturn` object lets your module:
 * read the active file, open files and the selection
 * find and open files, and watch for file changes
 * listen for projects opening and closing
-* show messages and notifications
+* show messages, notifications and input boxes
+* rename files
 * read settings
 * add tests to the Tests panel
 * restart the language server
+* add doc comments and react to symbol renames
 
 Each module also has its own storage folder (`saturn.storagePath`).
 
@@ -91,9 +104,13 @@ If it has `activationEvents`, Saturn activates it the first time one of these ha
 | `workspaceContains:<glob>` | The open project has a file matching the glob. |
 | `onLanguage:<id>` | A file in that language opens. |
 | `onCommand:<id>` | That command runs. |
-| `*` | Straight away. |
+| `*` | At startup, the same as having no `activationEvents`. |
 
-Using any of the module's contributions also activates it: a command, panel, preview, file template, Run entry, New Project type or tests.
+Using any of the module's contributions also activates it: a command, panel, preview, file template, Run entry, New Project type or tests. Doc comments and rename hooks start a module through its `onLanguage:<id>` event.
+
+{% hint style="info" %}
+If a module has `activationEvents` but no `onLanguage:<id>` event for one of its own languages, Saturn currently loads it at startup instead. This rule may change. Add an `onLanguage:<id>` event for each of your languages.
+{% endhint %}
 
 A module that activates after projects are already open still gets `projects.onDidOpen` for each of them.
 

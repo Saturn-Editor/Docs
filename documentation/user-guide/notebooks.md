@@ -47,6 +47,34 @@ Click **Aa** on a page to set its font, background and text colour. Choose **Use
 
 Set the default page style for every page in [Settings](settings.md#notebooks) → Notebooks.
 
+Code blocks keep your theme's code colours, even on a page with a custom background.
+
+## Renaming
+
+Choose **Rename Notebook…** in action search.
+
+## Encryption
+
+You can lock a notebook with a password. Use these in action search:
+
+* **Encrypt Notebook…**
+* **Change Notebook Password…**
+* **Lock Notebook**
+* **Remove Notebook Encryption…**
+
+Tick **Remember on this device** to keep the password in your system's keychain.
+
+{% hint style="warning" %}
+If you forget the password, there's no way to get the notebook back.
+{% endhint %}
+
+Things to know:
+
+* Page names and folders aren't encrypted. Only the page contents are.
+* If the notebook is in Git, older unencrypted copies stay in its history.
+
+How it works: your password is run through Argon2id (128 MiB of memory, 3 passes, 4 lanes). The result protects a random 256-bit key, and that key encrypts each page with AES-256-GCM.
+
 ## Known limits
 
 * Links to a page stop working if the page is renamed or moved.

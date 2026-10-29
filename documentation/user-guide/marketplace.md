@@ -20,6 +20,14 @@ To update your Saturn modules, simply click the "Update to X.X.X" button to the 
 
 <figure><img src="../.gitbook/assets/image (2).png" alt="" width="261"><figcaption></figcaption></figure>
 
+### Choosing a version
+
+To install a different version, open the **Installed** tab and click **Versions**. Choose **Downgrade to…** or **Update to…** next to any version that works with your Saturn.
+
+## First launch
+
+The first time you open Saturn, the welcome screen has a Languages section and an Extensions section. Some modules are ticked by default. Untick any you don't want before you continue.
+
 ## Installing from a file
 
 To install a module that isn't in the marketplace, open the **Upload** menu and choose **Zip file…** or **Folder…**. In a zip, the manifest can be at the root or inside a single top-level folder.

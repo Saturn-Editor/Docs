@@ -9,12 +9,16 @@ icon: file-code
 Click the project name to open its menu:
 
 * **New Project…**, **Open Project…** and **Close Project**
-* **Switch to:** your recent projects
+* **Switch to:** up to 10 recent projects, with their names in full
 * **Notebooks:** your recent [notebooks](notebooks.md)
 
 When you pick a project or notebook, choose whether to open it in **This window** or a **New window**.
 
 The search box gets smaller in narrow windows.
+
+## Panels
+
+You can drag panels to any position in the side strip.
 
 ## Split editor
 
@@ -30,6 +34,33 @@ When the file's [language](languages.md) supports them, you can use:
 * **Format:** format the document.
 
 These are also in the editor's right-click menu.
+
+## Typing and editing
+
+* **Completion:** press Tab to accept the open suggestion. Suggestions don't pop up inside comments, but Ctrl+Space still shows them.
+* **Brackets:** press Enter between an empty pair of brackets to open them onto three lines, with the cursor on an indented middle line. This needs **Auto-indent** on.
+* **Tab:** with the cursor after some text, Tab inserts an indent where the cursor is. It doesn't indent the whole line.
+* **Duplicate:** Cmd+D (macOS) or Ctrl+D duplicates the selection, or the current line if nothing is selected.
+* **Doc comments:** type `/**` or `///` on an empty line to add a doc comment, where the language supports it.
+
+## Quick fixes
+
+When the language offers fixes for an error or warning, an amber lightbulb shows at the end of the cursor's line. To see the fixes:
+
+* press Alt+Enter, Ctrl+. (Visual Studio keymap) or Cmd/Ctrl+. (VS Code keymap)
+* right-click and choose **Show Quick Fixes**
+* click **Quick fixes…** in the error or warning popup
+
+## Smart features
+
+When the language supports them:
+
+* **Hover popups** are formatted, with highlighted code.
+* **Inlay hints** show extra details, such as parameter names, inside the code.
+* **CodeLens** shows links above code, such as the number of usages.
+* **Semantic highlighting** colours code by what each name is, such as a class or a parameter.
+
+Turn these on or off in [Settings](settings.md#smartcode).
 
 ## Blame
 

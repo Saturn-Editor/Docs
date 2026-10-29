@@ -27,7 +27,9 @@ In the Settings window, the sections are in a sidebar. In the Welcome window, th
 
 ### SmartCode
 
-Turn code completion and error detection on or off.
+There's a row each for code completion, error detection, inlay hints, CodeLens and semantic highlighting. Each row shows **On**, **Off** or **Partly on** when languages differ, for example "Partly on (2 of 4 languages)". Clicking a row that shows **On** turns that feature off for every language. Clicking **Off** or **Partly on** turns it on for every language.
+
+To turn a feature on or off for one language, use the switches in [Languages](#languages).
 
 ## Languages
 
@@ -68,6 +70,6 @@ The URL of the Marketplace index.
 * **Check for updates automatically:** covers Saturn and your installed languages, extensions and themes.
 * **Check for updates:** check now.
 * **Git: when switching branches with changes:** Ask each time, Bring them along, or Shelve for that branch. See [Git](git.md).
-* **Projects:** the default folder for New Project and Clone. Click **Change…** to pick another folder, or **Use default**. The default is `~/SaturnProjects` if it exists, otherwise your home folder.
+* **Projects:** the default folder for New Project and Clone. Click **Change…** to pick another folder, or **Use default**. The default is `~/SaturnProjects`. Saturn creates it if it doesn't exist.
 * **Debugging: Show the debug panels:** In the project window, or In a separate window. See [Debugging](debugging.md#separate-window).
 * **Reset Saturn**
