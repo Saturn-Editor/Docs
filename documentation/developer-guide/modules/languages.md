@@ -4,7 +4,7 @@ icon: spell-check
 
 # Languages
 
-A language module adds support for a programming language to Saturn. It can add syntax highlighting, a language server, previews, run configurations, file templates and new-project templates. Each language module is a folder with a `saturn-language.json` manifest.
+A language module adds support for a programming language to Saturn. It can add syntax highlighting, a language server, a debugger, tests, previews, run configurations, file templates and new-project templates. Each language module is a folder with a `saturn-language.json` manifest.
 
 ## saturn-language.json
 
@@ -13,11 +13,11 @@ A language module adds support for a programming language to Saturn. It can add 
 | id | Yes | Must match the module's [Marketplace](marketplace.md) entry. Must be unique across all languages, extensions and themes. |
 | name | Yes | Display name. |
 | version | Yes | Must match the Marketplace version. |
-| saturnApi | Yes | The Saturn-API version range you support, for example `^0.2`. |
+| saturnApi | Yes | The Saturn-API version range you support, for example `^0.3`. |
 | description | No | Short description. |
 | main | No | A JavaScript entry file that exports `activate(saturn)` and `deactivate()`. It works the same way as an [extension](extensions/README.md) entry file. |
 | requires | No | External tools the module needs: `[{ name, command, args?, install? }]`. Saturn runs each `command` before starting the language server. If one fails, Saturn shows a notification. |
-| activationEvents | No | `workspaceContains:<glob>` patterns. These only decide which language icon a project shows. They don't control when the module loads. Saturn activates every enabled module at startup. |
+| activationEvents | No | When to activate the module, for example `workspaceContains:<glob>` or `onLanguage:<id>`. Without it, the module activates at startup. See [Activation](../saturn-api.md#activation). |
 | contributes | No | Everything the module adds to Saturn. See below. |
 
 ### contributes
@@ -30,6 +30,7 @@ A language module adds support for a programming language to Saturn. It can add 
 | previews | `[{ id, label, extensions, defaultView? }]`. A rendered view of files with these extensions. `defaultView` is `code` (the default), `split` or `preview`. Users can change it in Settings → Languages. Render it with `previews.registerRenderer(id, (text, ctx) => …)`. |
 | fileTemplates | `[{ id, label, kind, extension?, placeholder? }]`, where `kind` is `file` or `dir`. Fill each one with `files.registerTemplate(id, { fileName?, content? })`. |
 | newProject | `{ language, tabs?, fields }`. Lets users create a new project for this language. See [New projects](#new-projects). |
+| tests | `true` to add tests to the Tests panel. See [Tests](extensions/tests.md). |
 | commands, buttons, panels, settings, runConfigurations | The same as for extensions. See [Configuration](extensions/configuration.md). |
 
 ## Language server
@@ -97,7 +98,7 @@ A shortened version of the C# .NET module's manifest:
       "install": "Install the .NET SDK from https://dotnet.microsoft.com/download"
     }
   ],
-  "activationEvents": ["workspaceContains:**/*.csproj", "workspaceContains:**/*.cs"],
+  "activationEvents": ["workspaceContains:**/*.csproj", "workspaceContains:**/*.cs", "onLanguage:csharp"],
   "contributes": {
     "languages": [
       {

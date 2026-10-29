@@ -77,6 +77,7 @@ Pushing a `v*` tag runs a GitHub Actions workflow that publishes a GitHub Releas
 | `src/preload/index.ts` | The preload script. |
 | `src/host/index.ts` | The extension host and the `saturn` API passed to modules. |
 | `src/renderer/src` | The interface: `screens/`, `editor/`, `panels/`, `modules/`, `components/`, `commands/`, `preview/`, `theme/` |
+| `package.json` | The Saturn-API version, in the `saturnApi` field. |
 | `src/shared` | Code shared between processes: `api.ts`, `types.ts`, `modules.ts`, `keymaps.ts`, `marketplace.ts` |
 | `resources/` | Icons and built-in themes. |
 | `docs/superpowers/specs` | The design document, which is kept up to date. |

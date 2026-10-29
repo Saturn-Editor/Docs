@@ -25,7 +25,7 @@ Callbacks receive `ctx = { projectPath }`.
 
 Language modules use the same entry point and API. Some parts of the API, marked **Languages only** below, go with contributions that only language modules can make.
 
-## Saturn API (0.2.1)
+## Saturn API (0.3.0)
 
 ### platform and storagePath
 
@@ -102,6 +102,10 @@ Read what the user is editing. See [Editor API](editor-api.md).
 * `window.showMessage(message, { kind?: 'info' | 'warning' | 'error', projectPath? })` shows a message in the status bar.
 * `window.notify({ title, message?, kind?, actions? })` shows a notification in a pop-up and in the bell menu. Each action can run a command, open Settings, or open an `https` URL.
 
+### tests
+
+* `tests.registerController(id, { label, discover(ctx), run(ctx) })` adds tests to the Tests panel. Requires `contributes.tests: true`. See [Tests](tests.md).
+
 ### languageServer
 
 * `languageServer.restart()` restarts your module's language server, for example after a setting changes.
@@ -109,7 +113,7 @@ Read what the user is editing. See [Editor API](editor-api.md).
 ### settings
 
 * `settings.get(id)` uses the `id` from `contributes.settings`, without any prefix.
-* `settings.onChange(values => …)`
+* `settings.onChange(values => …)`. Previews also re-render when your settings change.
 
 ## Publishing
 

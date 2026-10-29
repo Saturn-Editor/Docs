@@ -47,7 +47,7 @@ Each item in `versions`:
 | Key | Description |
 | --- | --- |
 | version | Semver version (`x.y.z`). Must match the `version` in the module's manifest. |
-| saturnApi | Caret range such as `^0.2`. Required for languages and extensions. Not allowed for themes. |
+| saturnApi | A range such as `^0.3`. Required for languages and extensions. Not allowed for themes. |
 | download | A `.zip` GitHub Release asset from the entry's own repo: `https://github.com/<repo>/releases/download/...` |
 | sha256 | SHA-256 of the zip, as 64 lowercase hex characters. |
 
@@ -68,7 +68,7 @@ The zip must contain the module folder's **contents** at its root. Don't put the
 
 ## Versioning and compatibility
 
-The current module API version is **0.2.1** (`^0.2`).
+The current module API version is **0.3.0** (`^0.3`). A module runs when its major version matches Saturn's and its minor version is the same or lower, so `^0.2` modules still run. See [Compatibility](../saturn-api.md#compatibility).
 
 Saturn installs the newest version whose `saturnApi` matches the running Saturn. If a newer version needs a newer Saturn, the Update button is disabled with "You need to update Saturn to install version X".
 

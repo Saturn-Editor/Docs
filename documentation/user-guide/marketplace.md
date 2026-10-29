@@ -40,5 +40,7 @@ Extensions provide additional functionality to the Saturn editor via actions. Fo
 
 ## Themes
 
-Theme change how Saturn looks. If you're coming from an IDE that uses a specific code colour pallete, you may prefer to use one of these.
+Themes change how Saturn looks. If you're coming from an IDE that uses a specific code colour palette, you may prefer to use one of these. Saturn also includes High Contrast and Dyslexia Friendly themes; see [Settings](settings.md#appearance).
+
+If a theme is missing some items, Saturn still loads it and uses its own defaults for the missing items. At startup, it tells you which items are missing so you can report it to the theme's developer.
 

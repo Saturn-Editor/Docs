@@ -41,6 +41,6 @@ The page runs in a sandboxed iframe that only allows scripts. Its Content Securi
 
 * `saturn.postMessage(message)` to send a message to your module
 * `saturn.onMessage(listener)` to receive messages from your module
-* CSS variables with the current theme's colours: `--saturn-app`, `--saturn-editor`, `--saturn-panel`, `--saturn-raised`, `--saturn-divider`, `--saturn-border`, `--saturn-text`, `--saturn-strong`, `--saturn-muted`, `--saturn-accent`, `--saturn-on-accent`, `--saturn-selection` and `--saturn-hover`
+* CSS variables with the current theme's colours: `--saturn-app`, `--saturn-editor`, `--saturn-panel`, `--saturn-raised`, `--saturn-divider`, `--saturn-border`, `--saturn-text`, `--saturn-strong`, `--saturn-muted`, `--saturn-accent`, `--saturn-on-accent`, `--saturn-selection`, `--saturn-hover`, `--saturn-error` and `--saturn-warning`
 
 The page reloads when the theme changes, so keep any state in your module, not in the page.
