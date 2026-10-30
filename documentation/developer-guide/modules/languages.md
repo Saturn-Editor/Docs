@@ -13,7 +13,7 @@ A language module adds support for a programming language to Saturn. It can add 
 | id | Yes | Must match the module's [Marketplace](marketplace.md) entry. Must be unique across all languages, extensions and themes. |
 | name | Yes | Display name. |
 | version | Yes | Must match the Marketplace version. |
-| saturnApi | Yes | The Saturn-API version range you support, for example `^0.3`. |
+| saturnApi | Yes | The Saturn-API version range you support, for example `^0.4`. |
 | description | No | Short description. |
 | badge | No | A short text icon, for example `C#`. An `icon.svg` or `icon.png` at the module's root is used instead when there is one. |
 | main | No | An ES module that exports `activate(saturn)` and, optionally, `deactivate()`. It works the same way as an [extension](extensions/README.md) entry file. |
@@ -45,7 +45,7 @@ Each item in `contributes.languages`:
 | grammar | No | Path to a TextMate grammar (JSON) file. |
 | scopeName | No | The grammar's root scope, for example `source.cs`. |
 | versions | No | `true` to show a version picker for this language in the status bar. Fill it with `saturn.languages.registerVersions`. |
-| docCommentTriggers | No | Text that starts a doc comment, for example `["///"]` or `["/**"]`. When the user types one on an otherwise empty line, Saturn asks your `languages.registerDocComment` provider for the comment. See [Doc comments](extensions/README.md#languages). |
+| docCommentTriggers | No | Text that starts a doc comment, for example `["///"]` or `["/**"]`. When the user types one on an otherwise empty line, Saturn asks your `languages.registerDocComment` provider for the comment. New in 0.4. See [Doc comments](extensions/README.md#languages). |
 
 ## Language server
 
@@ -81,7 +81,7 @@ Notes on some features:
 * **Quick fixes:** Saturn asks the server for code actions automatically. There's no feature ID for them.
 
 {% hint style="warning" %}
-`symbols`, `references`, `rename`, `formatting` and `signatureHelp` are new in API 0.2.1. `inlayHints`, `codeLens` and `semanticTokens` are new in this release. If your manifest lists `features`, add them to turn them on.
+`symbols`, `references`, `rename`, `formatting` and `signatureHelp` are new in API 0.2.1. `inlayHints`, `codeLens` and `semanticTokens` are new in 0.4 and need `"saturnApi": "^0.4"`. If your manifest lists `features`, add them to turn them on.
 {% endhint %}
 
 ### Server options

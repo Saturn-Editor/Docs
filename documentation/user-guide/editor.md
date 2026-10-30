@@ -16,6 +16,21 @@ When you pick a project or notebook, choose whether to open it in **This window*
 
 The search box gets smaller in narrow windows.
 
+## Run configurations
+
+The right side of the top bar has a run configuration button, **▶ Run** and **■ Stop**. The button shows the name of the selected configuration, or **Add configuration…** if none is selected.
+
+Click it to choose a configuration:
+
+* Type in **Search run configurations** to filter by name or command. Up to 10 entries show. Press Enter to pick the first one.
+* Entries are grouped under each language's name, then **Custom**. Configurations for the language of the file you're editing come first.
+* Language modules suggest some entries, such as `dotnet run` or your npm scripts.
+* To add your own, choose **＋ Add custom command…**, enter a **Name** and a **Command** (for example `npm run dev`), and click **Save**. Saturn selects it straight away.
+
+**▶ Run** runs the selected configuration in a new Terminal tab. **■ Stop** stops it.
+
+Custom commands are saved in the project's `.saturn` folder, so you can commit them and share them with your team. You can't edit or delete them in Saturn yet. To change one, edit `.saturn/run-configurations.json`. Which configuration you've selected stays on your computer.
+
 ## Panels
 
 You can drag panels to any position in the side strip.

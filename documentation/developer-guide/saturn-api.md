@@ -4,7 +4,7 @@ icon: rectangle-api
 
 # Saturn-API
 
-Saturn-API is the interface between Saturn and its modules. The current version is **0.3.0**. Each module states which version it needs in its manifest's `saturnApi` field, for example `^0.3`.
+Saturn-API is the interface between Saturn and its modules. The current version is **0.4.0**. Each module states which version it needs in its manifest's `saturnApi` field, for example `^0.4`.
 
 {% hint style="info" %}
 The Saturn-API version is separate from the Saturn-Core version.
@@ -18,11 +18,11 @@ Versions are `X.Y.Z`. Saturn runs a module when:
 * the module's `Y` is less than or equal to Saturn's, and
 * `Z` is ignored.
 
-So a `^0.2` module runs on Saturn-API 0.3.0, but a `^0.3` module doesn't run on 0.2.x. This is looser than npm's caret rule for `0.x` versions.
+So a `^0.3` module runs on Saturn-API 0.4.0, but a `^0.4` module doesn't run on 0.3.x. This is looser than npm's caret rule for `0.x` versions.
 
-## What's new in this release
+## What's new in 0.4
 
-Nothing is deprecated or removed. The API version number for this release isn't set yet.
+Modules that declare `^0.3` still run. Nothing is deprecated or removed. If your module uses any of the features below, declare `"saturnApi": "^0.4"`.
 
 * **New API:** `window.showInput`, `workspace.renameFile`, `languages.onDidRenameSymbol` and `languages.registerDocComment`. See [Extensions](modules/extensions/README.md).
 * **Language servers:** three more `features`: `inlayHints`, `codeLens` and `semanticTokens`. Quick fixes (code actions) are requested automatically. See [Languages](modules/languages.md#language-server).
@@ -123,7 +123,7 @@ Language and extension manifests share these fields:
 | id | Lowercase `a-z`, `0-9`, `.` and `-`. |
 | name, version, description | Shown in Saturn and the Marketplace. |
 | badge | A short text icon. An `icon.svg` or `icon.png` at the module's root is used instead when there is one. |
-| saturnApi | A range such as `^0.3`. See [Compatibility](#compatibility). |
+| saturnApi | A range such as `^0.4`. See [Compatibility](#compatibility). |
 | main | The ES module entry file. |
 | activationEvents | When to activate the module. See [Activation](#activation). |
 | requires | External tools: `[{ name, command, args?, install? }]`. |

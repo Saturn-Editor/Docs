@@ -26,10 +26,10 @@ A notebook opens in Saturn's normal window, with some parts hidden:
 
 ## Pages
 
-Each page is a `<Title>.snp` file. The explorer hides the `.snp` extension and the `notebook.json` file.
+Each page is stored as a file with a random ID for its name, such as `<id>.snp`. The page's name is saved inside the file, so you won't see it in Finder or File Explorer. Saturn's explorer shows page names and hides the `notebook.json` file. Folders you create keep their own names.
 
 * Use **New** → **Page** or **Folder** to add one. New names are made unique, for example "Untitled 2".
-* To add a sub-page, right-click a page and choose **New Sub-page**, or type `/` in a page and choose **Page**. Sub-pages are stored in a folder named after the page, and the explorer shows them nested under it.
+* To add a sub-page, right-click a page and choose **New Sub-page**, or type `/` in a page and choose **Page**. Sub-pages are stored in a folder with the same ID as the page, and the explorer shows them nested under it.
 * Renaming, moving, copying or deleting a page does the same to its sub-pages. **Undo** restores both.
 
 ## Writing
@@ -40,6 +40,14 @@ Pages save automatically.
 * **Formatting:** select text to show a toolbar with Bold, Italic, Underline, Strikethrough, Code, left/centre/right alignment and Link. A link can go to a URL or to another page in the notebook.
 * **Blocks:** type `/` to add Text, Heading 1–3, a bulleted, numbered or to-do list, Quote, Code block, Table, Divider, Image or Page.
 * **Images:** paste or drop them into the page. Each image can be up to 5 MB and is stored inside the page.
+
+Links between pages keep working when you rename or move a page.
+
+To find a page, type its name in action search. It finds pages as well as actions.
+
+### Older notebooks
+
+Saturn converts a notebook made before this change the first time you open it. For an encrypted notebook, this happens after you unlock it. Pages keep their names, and links between them are updated.
 
 ## Page style
 
@@ -60,7 +68,7 @@ You can lock a notebook with a password. Use these in action search:
 * **Encrypt Notebook…**
 * **Change Notebook Password…**
 * **Lock Notebook**
-* **Remove Notebook Encryption…**
+* **Remove Notebook Encryption…** (asks for the current password)
 
 Tick **Remember on this device** to keep the password in your system's keychain.
 
@@ -70,13 +78,10 @@ If you forget the password, there's no way to get the notebook back.
 
 Things to know:
 
-* Page names and folders aren't encrypted. Only the page contents are.
+* The names of folders you create aren't encrypted.
 * If the notebook is in Git, older unencrypted copies stay in its history.
-
-How it works: your password is run through Argon2id (128 MiB of memory, 3 passes, 4 lanes). The result protects a random 256-bit key, and that key encrypts each page with AES-256-GCM.
 
 ## Known limits
 
-* Links to a page stop working if the page is renamed or moved.
 * There's no helper to set up sync yet. Use the Commit and Git panels.
 * A notebook's name comes from its folder name.
